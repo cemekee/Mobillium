@@ -21,6 +21,11 @@ class MainViewController: UIViewController {
         loadData()
         
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
 }
 
 extension MainViewController {
@@ -74,8 +79,12 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate, UIScro
         }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-           let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "DetailVC") as? DetailVC
-           vc!.movieDetail = self.viewModel.movie
+           let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController
+        if indexPath.row < 1 {
+                vc?.selectedMovieId = viewModel.getPlayingMovies()?.results[indexPath.row].id
+            } else {
+                vc?.selectedMovieId = viewModel.getUpcomingMovies()[indexPath.row].id
+            }
            self.navigationController?.pushViewController(vc!, animated: true)
        }
     

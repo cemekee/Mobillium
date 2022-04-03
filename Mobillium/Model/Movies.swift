@@ -17,6 +17,7 @@ struct Result: Codable {
     let title: String?
     let overview: String?
     let id: Int?
+    let voteAverage: Double?
     
     enum CodingKeys: String, CodingKey {
         case posterPath = "poster_path"
@@ -24,5 +25,6 @@ struct Result: Codable {
         case title
         case overview
         case id
+        case voteAverage = "vote_average"
     }
 }
