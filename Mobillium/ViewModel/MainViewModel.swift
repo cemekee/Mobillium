@@ -62,8 +62,8 @@ class MainViewModel {
                     let playingMovies = model as! Movies
                     self?.playingMovies = playingMovies
                         self?.updateUI()
-                    self?.showError()
                 case .failure(_):
+                    self?.showError()
                     break
             }
         }

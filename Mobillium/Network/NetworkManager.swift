@@ -26,7 +26,6 @@ class NetworkManager {
         AF.request(
             url,
             method: method,
-            //parameters: NetworkManager.toParameters(model: requestModel),
             parameters: params,
             encoding: URLEncoding.queryString,
             headers: headers
