@@ -13,6 +13,8 @@ class MainViewModel {
     private var upcomingMovies: [Result] = []
     private var playingMovies: Movies?
     var updateUI : ()->() = {}
+    var showError : ()->() = {}
+    
     var currentPage = 1
     var isPaginating = false
 
@@ -26,6 +28,10 @@ class MainViewModel {
     
     func getPlayingMovies() -> Movies? {
         return playingMovies
+    }
+    
+    func removeAll(){
+        upcomingMovies.removeAll()
     }
     
     func fetchUpcomingMovies(pagination: Bool = false) {
@@ -45,6 +51,7 @@ class MainViewModel {
                     self?.updateUI()
 
                 case .failure(_):
+                    self?.showError()
                     break
             }
             if pagination {

@@ -9,9 +9,7 @@ import UIKit
 
 class MainViewController: UIViewController {
     
-    
     @IBOutlet weak var tableView: UITableView!
-    
     private let viewModel = MainViewModel()
     
     override func viewDidLoad() {
@@ -34,20 +32,42 @@ extension MainViewController {
         tableView.dataSource = self
         tableView.register(UINib(nibName: "SliderCell", bundle: nil), forCellReuseIdentifier: "SliderCell")
         tableView.register(UINib(nibName: "MovieCell", bundle: nil), forCellReuseIdentifier: "MovieCell")
+        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl?.addTarget(self,
+                                            action: #selector(didPullToRefresh),
+                                            for: .valueChanged)
+    }
+    
+    @objc private func didPullToRefresh(){
+        loadData()
     }
     
     func initVM(){
         viewModel.updateUI = { [weak self] in
-                self?.tableView.reloadData()
+            self?.tableView.reloadData()
+        }
+        
+        viewModel.showError = {[weak self] in
+            self?.showErrorPopUp()
         }
     }
     
     func loadData(){
-        viewModel.fetchUpcomingMovies()
-        viewModel.fetchPlayingMovies()
+        DispatchQueue.main.asyncAfter(deadline: .now()+1) {
+            self.tableView.refreshControl?.endRefreshing()
+            self.viewModel.removeAll()
+            self.viewModel.currentPage = 1
+            self.viewModel.fetchUpcomingMovies()
+            self.viewModel.fetchPlayingMovies()
+        }
+        
     }
     
-   
+    func showErrorPopUp(){
+        let alert = UIAlertController(title: "Error", message: "Fetch Error", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
     
     func fetchNextPage(isPagination:Bool){
         DispatchQueue.main.async {
@@ -74,7 +94,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate, UIScro
         }
             let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
             let data = viewModel.getUpcomingMovies()
-        cell.configure(imgUrl: data[indexPath.row - 1 ].posterPath ?? "", lblTitle: data[indexPath.row - 1].title ?? "", lblDescription: data[indexPath.row - 1].overview ?? "", lblDate: data[indexPath.row - 1].releaseDate ?? "")
+        cell.configure(imgUrl: data[indexPath.row].posterPath ?? "", lblTitle: data[indexPath.row].title ?? "", lblDescription: data[indexPath.row].overview ?? "", lblDate: data[indexPath.row].releaseDate ?? "")
             return cell
         }
     
@@ -103,7 +123,6 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate, UIScro
             guard !viewModel.isPaginating  else {
                 return
             }
-            print("more data")
             tableView.tableFooterView = createSpinnerFooter()
             fetchNextPage(isPagination: true)
         }
@@ -119,6 +138,4 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate, UIScro
         
         return footerView
     }
-    
-    
 }

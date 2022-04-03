@@ -49,7 +49,7 @@ extension DetailViewController {
         let data = viewModel.getSelectedMovie()
         lblPageTitle.text = data?.title
         lblDescription.text = data?.overview
-        lblRate.text = "\(data?.voteAverage)" + "/10"
+        lblRate.text = "\(data?.voteAverage ?? 0)" + "/10"
         lblDate.text = data?.releaseDate
         lblTitle.text = data?.title
         let url = URL(string: (ServiceList.imageBaseUrl) + (data?.posterPath ?? ""))
