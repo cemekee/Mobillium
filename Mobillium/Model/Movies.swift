@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Upcoming: Codable {
+struct Movies: Codable {
     let results: [Result]
 }
 

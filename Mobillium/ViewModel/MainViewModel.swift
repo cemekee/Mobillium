@@ -9,20 +9,24 @@ import Foundation
 import Alamofire
 
 class MainViewModel {
-    private var upcomingMovies: Upcoming?
-    private var playingMovies: Upcoming?
+    private var upcomingMovies: Movies?
+    private var playingMovies: Movies?
     var updateUI : ()->() = {}
     
-    func getUpcomingMovies() -> Upcoming? {
+    func getUpcomingMovies() -> Movies? {
         return upcomingMovies
     }
     
+    func getPlayingMovies() -> Movies? {
+        return playingMovies
+    }
+    
     func fetchUpcomingMovies() {
-        NetworkManager.instance.fetch(HTTPMethod.get, url: ServiceList.getUpcoming , requestModel: nil, model: Upcoming.self ) { [weak self] response in
+        NetworkManager.instance.fetch(HTTPMethod.get, url: ServiceList.getUpcoming , requestModel: nil, model: Movies.self ) { [weak self] response in
                 switch(response)
                 {
                 case .success(let model):
-                    let upcoming = model as! Upcoming
+                    let upcoming = model as! Movies
                     self?.upcomingMovies = upcoming
                     self?.updateUI()
                     
@@ -30,15 +34,16 @@ class MainViewModel {
                     break
             }
         }
+        
     }
     
     func fetchPlayingMovies() {
-        NetworkManager.instance.fetch(HTTPMethod.get, url: ServiceList.nowPlaying , requestModel: nil, model: Upcoming.self ) { [weak self] response in
+        NetworkManager.instance.fetch(HTTPMethod.get, url: ServiceList.nowPlaying , requestModel: nil, model: Movies.self ) { [weak self] response in
                 switch(response)
                 {
                 case .success(let model):
-                    let upcoming = model as! Upcoming
-                    self?.upcomingMovies = upcoming
+                    let playingMovies = model as! Movies
+                    self?.playingMovies = playingMovies
                     self?.updateUI()
                     
                 case .failure(_):

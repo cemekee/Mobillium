@@ -33,6 +33,7 @@ extension MainViewController {
     
     func loadData(){
         viewModel.fetchUpcomingMovies()
+        viewModel.fetchPlayingMovies()
     }
     
     func initVM(){
@@ -51,13 +52,13 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
            
         if indexPath.row < 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "SliderCell", for: indexPath) as! SliderCell
-            let data = viewModel.getUpcomingMovies()
+            let data = viewModel.getPlayingMovies()
             cell.configure(imgUrl: data?.results[indexPath.row].posterPath ?? "", lblTitle: data?.results[indexPath.row].title ?? "", lblDescription: data?.results[indexPath.row].overview ?? "")
             return cell
         }
             let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
             let data = viewModel.getUpcomingMovies()
-            cell.configure(imgUrl: data?.results[indexPath.row].posterPath ?? "", lblTitle: data?.results[indexPath.row].title ?? "", lblDescription: data?.results[indexPath.row].overview ?? "", lblDate: data?.results[indexPath.row].releaseDate ?? "")
+            cell.configure(imgUrl: data?.results[indexPath.row - 1 ].posterPath ?? "", lblTitle: data?.results[indexPath.row - 1].title ?? "", lblDescription: data?.results[indexPath.row - 1].overview ?? "", lblDate: data?.results[indexPath.row - 1].releaseDate ?? "")
             return cell
         }
     
