@@ -24,6 +24,8 @@
 		18BF19DA27F8BFC4001D66D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18BF19D927F8BFC4001D66D2 /* Assets.xcassets */; };
 		18BF19DD27F8BFC4001D66D2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18BF19DB27F8BFC4001D66D2 /* LaunchScreen.storyboard */; };
 		18BF19E927F8C38E001D66D2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18BF19E827F8C38E001D66D2 /* Main.storyboard */; };
+		18E938B827F9EA75003F3471 /* FirstCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E938B627F9EA75003F3471 /* FirstCell.swift */; };
+		18E938B927F9EA75003F3471 /* FirstCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E938B727F9EA75003F3471 /* FirstCell.xib */; };
 		F9A4204A081FF90C4CD79C5C /* Pods_Mobillium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CED93EDAD9ED52A18BF5FD8 /* Pods_Mobillium.framework */; };
 /* End PBXBuildFile section */
 
@@ -48,6 +50,8 @@
 		18BF19DC27F8BFC4001D66D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		18BF19DE27F8BFC4001D66D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18BF19E827F8C38E001D66D2 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		18E938B627F9EA75003F3471 /* FirstCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstCell.swift; sourceTree = "<group>"; };
+		18E938B727F9EA75003F3471 /* FirstCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FirstCell.xib; sourceTree = "<group>"; };
 		1CED93EDAD9ED52A18BF5FD8 /* Pods_Mobillium.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mobillium.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		78E1C3C11809EFF9980C8F30 /* Pods-Mobillium.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mobillium.debug.xcconfig"; path = "Target Support Files/Pods-Mobillium/Pods-Mobillium.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -142,6 +146,8 @@
 				180863C627F8CC0300491E11 /* SliderCell.xib */,
 				180863C927F8CE5200491E11 /* MovieCell.swift */,
 				180863CA27F8CE5200491E11 /* MovieCell.xib */,
+				18E938B627F9EA75003F3471 /* FirstCell.swift */,
+				18E938B727F9EA75003F3471 /* FirstCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -236,6 +242,7 @@
 				18BF19DD27F8BFC4001D66D2 /* LaunchScreen.storyboard in Resources */,
 				180863C827F8CC0300491E11 /* SliderCell.xib in Resources */,
 				18BF19DA27F8BFC4001D66D2 /* Assets.xcassets in Resources */,
+				18E938B927F9EA75003F3471 /* FirstCell.xib in Resources */,
 				180863CC27F8CE5200491E11 /* MovieCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -301,6 +308,7 @@
 				18BF19D327F8BFC2001D66D2 /* SceneDelegate.swift in Sources */,
 				180863C227F8C72F00491E11 /* Response.swift in Sources */,
 				180863C427F8C8D300491E11 /* MainViewModel.swift in Sources */,
+				18E938B827F9EA75003F3471 /* FirstCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

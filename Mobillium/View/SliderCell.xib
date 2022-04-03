@@ -31,16 +31,11 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="c59-KG-HX7">
-                        <rect key="frame" x="129.5" y="220" width="116" height="26"/>
-                    </pageControl>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="lDf-T1-gaW" secondAttribute="trailing" constant="16" id="2Tf-md-Q4v"/>
                     <constraint firstAttribute="trailingMargin" secondItem="4TU-ah-5Uc" secondAttribute="trailing" constant="16" id="5m8-m9-hNn"/>
-                    <constraint firstItem="c59-KG-HX7" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="J05-GU-pbb"/>
                     <constraint firstItem="4TU-ah-5Uc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="16" id="Qby-k4-uG0"/>
-                    <constraint firstAttribute="bottom" secondItem="c59-KG-HX7" secondAttribute="bottom" constant="10" id="kDX-wg-U8k"/>
                     <constraint firstItem="4TU-ah-5Uc" firstAttribute="top" secondItem="lDf-T1-gaW" secondAttribute="bottom" constant="8" id="mOM-DB-59b"/>
                     <constraint firstAttribute="bottom" secondItem="wmQ-Sl-mwq" secondAttribute="bottom" id="qrd-7P-Cvr"/>
                     <constraint firstAttribute="trailing" secondItem="wmQ-Sl-mwq" secondAttribute="trailing" id="rZ6-1D-OuO"/>
@@ -56,7 +51,6 @@
                 <outlet property="imgView" destination="wmQ-Sl-mwq" id="sLx-eQ-gye"/>
                 <outlet property="lblDescription" destination="4TU-ah-5Uc" id="FHH-Zg-Co3"/>
                 <outlet property="lblTitle" destination="lDf-T1-gaW" id="mUc-t3-IDo"/>
-                <outlet property="pageControl" destination="c59-KG-HX7" id="fef-wm-JwS"/>
             </connections>
             <point key="canvasLocation" x="131.15942028985509" y="114.50892857142857"/>
         </tableViewCell>

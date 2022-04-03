@@ -8,12 +8,11 @@
 import UIKit
 import Kingfisher
 
-class SliderCell: UITableViewCell {
+class SliderCell: UICollectionViewCell {
 
     @IBOutlet private weak var imgView: UIImageView!
     @IBOutlet private weak var lblTitle: UILabel!
     @IBOutlet private weak var lblDescription: UILabel!
-    @IBOutlet private weak var pageControl: UIPageControl!
     
     override func awakeFromNib() {
         super.awakeFromNib()

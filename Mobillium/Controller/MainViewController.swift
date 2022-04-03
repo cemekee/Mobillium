@@ -11,6 +11,7 @@ class MainViewController: UIViewController {
     
     @IBOutlet private weak var tableView: UITableView!
     private let viewModel = MainViewModel()
+    private let firstCell = FirstCell()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +30,7 @@ extension MainViewController {
     private func setupTableView(){
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(UINib(nibName: "SliderCell", bundle: nil), forCellReuseIdentifier: "SliderCell")
+        tableView.register(UINib(nibName: "FirstCell", bundle: nil), forCellReuseIdentifier: "FirstCell")
         tableView.register(UINib(nibName: "MovieCell", bundle: nil), forCellReuseIdentifier: "MovieCell")
         tableView.refreshControl = UIRefreshControl()
         tableView.refreshControl?.addTarget(self,
@@ -60,9 +61,14 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate, UIScro
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.row < 1 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "SliderCell", for: indexPath) as! SliderCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "FirstCell", for: indexPath) as! FirstCell
             let data = viewModel.getPlayingMovies()
-            cell.configure(data:data?.results[indexPath.row])
+            cell.configure(data: data?.results)
+            cell.goToDetail = {[weak self] data in
+                let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController
+                vc?.selectedMovieId = data
+                self?.navigationController?.pushViewController(vc!, animated: true)
+            }
             return cell
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
