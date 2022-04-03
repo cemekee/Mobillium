@@ -10,27 +10,20 @@ import Kingfisher
 
 class SliderCell: UITableViewCell {
 
-    @IBOutlet weak var imgView: UIImageView!
-    @IBOutlet weak var lblTitle: UILabel!
-    @IBOutlet weak var lblDescription: UILabel!
-    @IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet private weak var imgView: UIImageView!
+    @IBOutlet private weak var lblTitle: UILabel!
+    @IBOutlet private weak var lblDescription: UILabel!
+    @IBOutlet private weak var pageControl: UIPageControl!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
     
-    func configure(imgUrl:String, lblTitle:String, lblDescription:String) {
-        let url = URL(string: (ServiceList.imageBaseUrl) + (imgUrl))
+    func configure(data: Result?) {
+        let url = URL(string: (ServiceList.imageBaseUrl) + (data?.posterPath ?? ""))
         imgView.kf.setImage(with: url)
-        self.lblTitle.text = lblTitle
-        self.lblDescription.text = lblDescription
+        self.lblTitle.text = data?.title
+        self.lblDescription.text = data?.overview
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
 }

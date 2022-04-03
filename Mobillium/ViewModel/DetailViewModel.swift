@@ -9,10 +9,10 @@ import Foundation
 import Alamofire
 
 class DetailViewModel {
-
     private var selectedMovie: Result?
     //var selectedMovieId: Int?
     var updateUI : ()->() = {}
+    var showError: ()->() = {}
     
     func getSelectedMovie() -> Result? {
         return selectedMovie
@@ -28,6 +28,7 @@ class DetailViewModel {
                     self?.selectedMovie = selectedMovie
                     self?.updateUI()
                 case .failure(_):
+                    self?.showError()
                     break
             }
         }

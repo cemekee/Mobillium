@@ -56,8 +56,8 @@ extension NetworkManager {
     {
         return try! JSONEncoder().encode(model.self)
     }
-
-
+    
+    
     static func jsonToParameters(from data: Data) -> [String: Any]?
     {
         return try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]

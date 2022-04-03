@@ -9,19 +9,13 @@ import Foundation
 import Alamofire
 
 class MainViewModel {
-    //private var upcomingMovies: Movies?
     private var upcomingMovies: [Result] = []
     private var playingMovies: Movies?
     var updateUI : ()->() = {}
     var showError : ()->() = {}
-    
     var currentPage = 1
     var isPaginating = false
 
-//    func getUpcomingMovies() -> Movies? {
-//        return upcomingMovies
-//    }
-    
     func getUpcomingMovies() -> [Result] {
         return upcomingMovies
     }
@@ -58,10 +52,6 @@ class MainViewModel {
                 self?.isPaginating = false
             }
         }
-        
-//        if pagination {
-//            self.isPaginating = false
-//        }
     }
     
     func fetchPlayingMovies() {
@@ -72,6 +62,7 @@ class MainViewModel {
                     let playingMovies = model as! Movies
                     self?.playingMovies = playingMovies
                         self?.updateUI()
+                    self?.showError()
                 case .failure(_):
                     break
             }
