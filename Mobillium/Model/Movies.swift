@@ -8,7 +8,7 @@
 import Foundation
 
 struct Movies: Codable {
-    let results: [Result]
+    var results: [Result]
 }
 
 struct Result: Codable {
@@ -16,11 +16,13 @@ struct Result: Codable {
     let releaseDate: String?
     let title: String?
     let overview: String?
+    let id: Int?
     
     enum CodingKeys: String, CodingKey {
         case posterPath = "poster_path"
         case releaseDate = "release_date"
         case title
         case overview
+        case id
     }
 }

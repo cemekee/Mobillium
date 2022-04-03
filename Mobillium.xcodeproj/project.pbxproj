@@ -17,6 +17,8 @@
 		180863CC27F8CE5200491E11 /* MovieCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 180863CA27F8CE5200491E11 /* MovieCell.xib */; };
 		180863CE27F8D21400491E11 /* Movies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180863CD27F8D21400491E11 /* Movies.swift */; };
 		180863D127F8D64A00491E11 /* ServiceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180863D027F8D64A00491E11 /* ServiceList.swift */; };
+		180863D427F9C19400491E11 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180863D327F9C19400491E11 /* DetailViewController.swift */; };
+		180863D627F9C1B100491E11 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180863D527F9C1B100491E11 /* DetailViewModel.swift */; };
 		18BF19D127F8BFC2001D66D2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BF19D027F8BFC2001D66D2 /* AppDelegate.swift */; };
 		18BF19D327F8BFC2001D66D2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BF19D227F8BFC2001D66D2 /* SceneDelegate.swift */; };
 		18BF19DA27F8BFC4001D66D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18BF19D927F8BFC4001D66D2 /* Assets.xcassets */; };
@@ -37,6 +39,8 @@
 		180863CA27F8CE5200491E11 /* MovieCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieCell.xib; sourceTree = "<group>"; };
 		180863CD27F8D21400491E11 /* Movies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movies.swift; sourceTree = "<group>"; };
 		180863D027F8D64A00491E11 /* ServiceList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceList.swift; sourceTree = "<group>"; };
+		180863D327F9C19400491E11 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		180863D527F9C1B100491E11 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		18BF19CD27F8BFC2001D66D2 /* Mobillium.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mobillium.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18BF19D027F8BFC2001D66D2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18BF19D227F8BFC2001D66D2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -146,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				180863C327F8C8D300491E11 /* MainViewModel.swift */,
+				180863D527F9C1B100491E11 /* DetailViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -154,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				180863BC27F8C52700491E11 /* MainViewController.swift */,
+				180863D327F9C19400491E11 /* DetailViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -283,12 +289,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				180863D427F9C19400491E11 /* DetailViewController.swift in Sources */,
 				180863C027F8C71300491E11 /* NetworkManager.swift in Sources */,
 				180863D127F8D64A00491E11 /* ServiceList.swift in Sources */,
 				180863C727F8CC0300491E11 /* SliderCell.swift in Sources */,
 				180863CB27F8CE5200491E11 /* MovieCell.swift in Sources */,
 				180863BD27F8C52700491E11 /* MainViewController.swift in Sources */,
 				180863CE27F8D21400491E11 /* Movies.swift in Sources */,
+				180863D627F9C1B100491E11 /* DetailViewModel.swift in Sources */,
 				18BF19D127F8BFC2001D66D2 /* AppDelegate.swift in Sources */,
 				18BF19D327F8BFC2001D66D2 /* SceneDelegate.swift in Sources */,
 				180863C227F8C72F00491E11 /* Response.swift in Sources */,

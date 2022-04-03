@@ -31,21 +31,32 @@ extension MainViewController {
         tableView.register(UINib(nibName: "MovieCell", bundle: nil), forCellReuseIdentifier: "MovieCell")
     }
     
+    func initVM(){
+        viewModel.updateUI = { [weak self] in
+                self?.tableView.reloadData()
+        }
+    }
+    
     func loadData(){
         viewModel.fetchUpcomingMovies()
         viewModel.fetchPlayingMovies()
     }
     
-    func initVM(){
-        viewModel.updateUI = { [weak self] in 
-            self?.tableView.reloadData()
+   
+    
+    func fetchNextPage(isPagination:Bool){
+        DispatchQueue.main.async {
+            self.tableView.tableFooterView = nil
         }
+        
+        viewModel.currentPage += 1
+        viewModel.fetchUpcomingMovies(pagination: isPagination)
     }
 }
 
-extension MainViewController: UITableViewDataSource, UITableViewDelegate {
+extension MainViewController: UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.getUpcomingMovies()?.results.count ?? 0
+        return viewModel.getUpcomingMovies().count
         }
         
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -58,14 +69,14 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         }
             let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
             let data = viewModel.getUpcomingMovies()
-            cell.configure(imgUrl: data?.results[indexPath.row - 1 ].posterPath ?? "", lblTitle: data?.results[indexPath.row - 1].title ?? "", lblDescription: data?.results[indexPath.row - 1].overview ?? "", lblDate: data?.results[indexPath.row - 1].releaseDate ?? "")
+        cell.configure(imgUrl: data[indexPath.row - 1 ].posterPath ?? "", lblTitle: data[indexPath.row - 1].title ?? "", lblDescription: data[indexPath.row - 1].overview ?? "", lblDate: data[indexPath.row - 1].releaseDate ?? "")
             return cell
         }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//           let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "DetailVC") as? DetailVC
-//           vc!.movieDetail = self.viewModel.movie
-//           self.navigationController?.pushViewController(vc!, animated: true)
+           let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "DetailVC") as? DetailVC
+           vc!.movieDetail = self.viewModel.movie
+           self.navigationController?.pushViewController(vc!, animated: true)
        }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -76,6 +87,29 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         
     }
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let position = scrollView.contentOffset.y
+        if position > (tableView.contentSize.height - 100 - scrollView.frame.size.height) {
+     
+            guard !viewModel.isPaginating  else {
+                return
+            }
+            print("more data")
+            tableView.tableFooterView = createSpinnerFooter()
+            fetchNextPage(isPagination: true)
+        }
+    }
+    
+    private func createSpinnerFooter() -> UIView {
+        let footerView = UIView(frame: CGRect(x:0, y:0, width: view.frame.size.width, height: 100))
+        
+        let spinner = UIActivityIndicatorView()
+        spinner.center = footerView.center
+        footerView.addSubview(spinner)
+        spinner.startAnimating()
+        
+        return footerView
+    }
     
     
 }

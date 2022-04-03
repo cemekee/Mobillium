@@ -9,7 +9,6 @@ import Foundation
 
 import Foundation
 import Alamofire
-//import SwiftyJSON
 import UIKit
 
 class NetworkManager {
@@ -22,13 +21,14 @@ class NetworkManager {
         "User-Agent": "Mozilla/5.0 (compatible; Rigor/1.0.0; http://rigor.com)"
     ]
     
-    public func fetch<T:Codable> (_ method: HTTPMethod, url: String, requestModel: T?, model: T.Type, completion: @escaping (AFResult<Codable>) -> Void)
+    public func fetch<T:Codable> (_ method: HTTPMethod, url: String, params: Parameters?, model: T.Type, completion: @escaping (AFResult<Codable>) -> Void)
     {
         AF.request(
             url,
             method: method,
-            parameters: NetworkManager.toParameters(model: requestModel),
-            encoding: JSONEncoding.default,
+            //parameters: NetworkManager.toParameters(model: requestModel),
+            parameters: params,
+            encoding: URLEncoding.queryString,
             headers: headers
         )
             .validate()

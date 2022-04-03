@@ -9,11 +9,18 @@ import Foundation
 import Alamofire
 
 class MainViewModel {
-    private var upcomingMovies: Movies?
+    //private var upcomingMovies: Movies?
+    private var upcomingMovies: [Result] = []
     private var playingMovies: Movies?
     var updateUI : ()->() = {}
+    var currentPage = 1
+    var isPaginating = false
+
+//    func getUpcomingMovies() -> Movies? {
+//        return upcomingMovies
+//    }
     
-    func getUpcomingMovies() -> Movies? {
+    func getUpcomingMovies() -> [Result] {
         return upcomingMovies
     }
     
@@ -21,31 +28,43 @@ class MainViewModel {
         return playingMovies
     }
     
-    func fetchUpcomingMovies() {
-        NetworkManager.instance.fetch(HTTPMethod.get, url: ServiceList.getUpcoming , requestModel: nil, model: Movies.self ) { [weak self] response in
+    func fetchUpcomingMovies(pagination: Bool = false) {
+        if pagination {
+            isPaginating = true
+        }
+        let params: Parameters = [
+            "page" : currentPage
+        ]
+        
+        NetworkManager.instance.fetch(HTTPMethod.get, url: ServiceList.getUpcoming , params: params, model: Movies.self ) { [weak self] response in
                 switch(response)
                 {
                 case .success(let model):
                     let upcoming = model as! Movies
-                    self?.upcomingMovies = upcoming
+                    self?.upcomingMovies.append(contentsOf: upcoming.results)
                     self?.updateUI()
-                    
+
                 case .failure(_):
                     break
             }
+            if pagination {
+                self?.isPaginating = false
+            }
         }
         
+//        if pagination {
+//            self.isPaginating = false
+//        }
     }
     
     func fetchPlayingMovies() {
-        NetworkManager.instance.fetch(HTTPMethod.get, url: ServiceList.nowPlaying , requestModel: nil, model: Movies.self ) { [weak self] response in
+        NetworkManager.instance.fetch(HTTPMethod.get, url: ServiceList.nowPlaying , params: nil, model: Movies.self ) { [weak self] response in
                 switch(response)
                 {
                 case .success(let model):
                     let playingMovies = model as! Movies
                     self?.playingMovies = playingMovies
-                    self?.updateUI()
-                    
+                        self?.updateUI()
                 case .failure(_):
                     break
             }
