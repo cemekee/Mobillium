@@ -10,7 +10,6 @@ import Alamofire
 
 class DetailViewModel {
     private var selectedMovie: Result?
-    //var selectedMovieId: Int?
     var updateUI : ()->() = {}
     var showError: ()->() = {}
     
