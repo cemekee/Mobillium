@@ -22,7 +22,7 @@ class FirstCell: UITableViewCell {
     override func layoutSubviews() {
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.register(UINib(nibName: "SliderCell", bundle: nil), forCellWithReuseIdentifier: "SliderCell")
+        collectionView.register(UINib(nibName: StringConstant.sliderCell, bundle: nil), forCellWithReuseIdentifier: StringConstant.sliderCell)
         configurePageControl()
     }
 }
@@ -52,7 +52,7 @@ extension FirstCell: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SliderCell", for: indexPath) as! SliderCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StringConstant.sliderCell, for: indexPath) as! SliderCell
         cell.configure(data: self.data?[indexPath.row])
         return cell
     }

@@ -59,8 +59,8 @@ extension DetailViewController {
     }
     
     private func showErrorPopUp(){
-        let alert = UIAlertController(title: "Error", message: "Fetch Error", preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+        let alert = UIAlertController(title: PopUpConstant.error, message: PopUpConstant.fetchError, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: PopUpConstant.ok, style: UIAlertAction.Style.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
 }

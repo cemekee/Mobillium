@@ -26,6 +26,7 @@
 		18BF19E927F8C38E001D66D2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18BF19E827F8C38E001D66D2 /* Main.storyboard */; };
 		18E938B827F9EA75003F3471 /* FirstCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E938B627F9EA75003F3471 /* FirstCell.swift */; };
 		18E938B927F9EA75003F3471 /* FirstCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E938B727F9EA75003F3471 /* FirstCell.xib */; };
+		18E938BB27FA0D07003F3471 /* StringConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E938BA27FA0D07003F3471 /* StringConstant.swift */; };
 		F9A4204A081FF90C4CD79C5C /* Pods_Mobillium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CED93EDAD9ED52A18BF5FD8 /* Pods_Mobillium.framework */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +53,7 @@
 		18BF19E827F8C38E001D66D2 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		18E938B627F9EA75003F3471 /* FirstCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstCell.swift; sourceTree = "<group>"; };
 		18E938B727F9EA75003F3471 /* FirstCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FirstCell.xib; sourceTree = "<group>"; };
+		18E938BA27FA0D07003F3471 /* StringConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringConstant.swift; sourceTree = "<group>"; };
 		1CED93EDAD9ED52A18BF5FD8 /* Pods_Mobillium.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mobillium.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		78E1C3C11809EFF9980C8F30 /* Pods-Mobillium.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mobillium.debug.xcconfig"; path = "Target Support Files/Pods-Mobillium/Pods-Mobillium.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -90,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				180863D027F8D64A00491E11 /* ServiceList.swift */,
+				18E938BA27FA0D07003F3471 /* StringConstant.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -298,6 +301,7 @@
 			files = (
 				180863D427F9C19400491E11 /* DetailViewController.swift in Sources */,
 				180863C027F8C71300491E11 /* NetworkManager.swift in Sources */,
+				18E938BB27FA0D07003F3471 /* StringConstant.swift in Sources */,
 				180863D127F8D64A00491E11 /* ServiceList.swift in Sources */,
 				180863C727F8CC0300491E11 /* SliderCell.swift in Sources */,
 				180863CB27F8CE5200491E11 /* MovieCell.swift in Sources */,

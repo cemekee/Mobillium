@@ -30,8 +30,8 @@ extension MainViewController {
     private func setupTableView(){
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(UINib(nibName: "FirstCell", bundle: nil), forCellReuseIdentifier: "FirstCell")
-        tableView.register(UINib(nibName: "MovieCell", bundle: nil), forCellReuseIdentifier: "MovieCell")
+        tableView.register(UINib(nibName: StringConstant.firstCell, bundle: nil), forCellReuseIdentifier: StringConstant.firstCell)
+        tableView.register(UINib(nibName: StringConstant.movieCell, bundle: nil), forCellReuseIdentifier: StringConstant.movieCell)
         tableView.refreshControl = UIRefreshControl()
         tableView.refreshControl?.addTarget(self,
                                             action: #selector(didPullToRefresh),
@@ -61,24 +61,24 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate, UIScro
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.row < 1 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "FirstCell", for: indexPath) as! FirstCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: StringConstant.firstCell, for: indexPath) as! FirstCell
             let data = viewModel.getPlayingMovies()
             cell.configure(data: data?.results)
             cell.goToDetail = {[weak self] data in
-                let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController
+                let vc = UIStoryboard.init(name: StringConstant.main, bundle: Bundle.main).instantiateViewController(withIdentifier: StringConstant.detailViewController) as? DetailViewController
                 vc?.selectedMovieId = data
                 self?.navigationController?.pushViewController(vc!, animated: true)
             }
             return cell
         }
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: StringConstant.movieCell, for: indexPath) as! MovieCell
         let data = viewModel.getUpcomingMovies()
         cell.configure(data:data[indexPath.row])
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController
+        let vc = UIStoryboard.init(name: StringConstant.main, bundle: Bundle.main).instantiateViewController(withIdentifier: StringConstant.detailViewController) as? DetailViewController
         if indexPath.row < 1 {
             vc?.selectedMovieId = viewModel.getPlayingMovies()?.results[indexPath.row].id
         } else {
@@ -120,8 +120,8 @@ extension MainViewController {
     }
     
     private func showErrorPopUp(){
-        let alert = UIAlertController(title: "Error", message: "Fetch Error", preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+        let alert = UIAlertController(title: PopUpConstant.error, message: PopUpConstant.fetchError, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: PopUpConstant.ok, style: UIAlertAction.Style.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
     
